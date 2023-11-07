@@ -10,7 +10,7 @@ import SwiftData
 
 struct UserListView: View {
     
-    @ObservedObject var viewModel: UserListViewModel
+    @EnvironmentObject var viewModel: UserListViewModel
     @Query(sort: \UserModel.login) var usersFromLocalDB: [UserModel]
     
     var body: some View {
@@ -61,14 +61,8 @@ struct UserListView: View {
             )
         }
     }
-    
-    init(context: ModelContext? = nil) {
-        let viewModel = UserListViewModel(modelContext: context)
-        _viewModel = ObservedObject(initialValue: viewModel)
-    }
 }
 
 #Preview {
     UserListView()
-        .modelContainer(for: [UserModel.self])
 }

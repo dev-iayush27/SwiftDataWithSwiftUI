@@ -13,7 +13,8 @@ struct SwiftDataWithSwiftUIApp: App {
     let container: ModelContainer
     var body: some Scene {
         WindowGroup {
-            UserListView(context: container.mainContext)
+            UserListView()
+                .environmentObject(UserListViewModel(modelContext: container.mainContext))
                 .modelContainer(container)
         }
     }
